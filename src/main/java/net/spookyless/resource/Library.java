@@ -27,6 +27,7 @@ public class Library {
             counters[getOffset(guest, true)] += 1;
         } catch (InterruptedException e) {
             System.out.printf(e.getMessage());
+            Thread.currentThread().interrupt();
         }
 
         postAction();

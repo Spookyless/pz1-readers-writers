@@ -6,7 +6,7 @@ public abstract class Entity extends Thread {
     protected String name;
     protected final Library library;
 
-    public Entity(Library library) {
+    protected Entity(Library library) {
         super();
 
         this.library = library;
@@ -30,6 +30,7 @@ public abstract class Entity extends Thread {
             }
         } catch (InterruptedException e) {
             System.out.println(getThreadIdentifier() + " died");
+            interrupt();
         }
     }
 
