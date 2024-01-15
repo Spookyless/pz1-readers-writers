@@ -2,18 +2,20 @@ package net.spookyless.actors;
 
 import net.spookyless.resource.Library;
 
-public class Entity extends Thread {
+public abstract class Entity extends Thread {
     protected String name;
     protected final Library library;
 
     public Entity(Library library) {
+        super();
+
         this.library = library;
     }
 
     @Override
     public void run() {
-        while(true) {
-            try {
+        try {
+            while (true) {
                 logIncoming();
 
                 library.enter(this);
@@ -25,9 +27,9 @@ public class Entity extends Thread {
                 logLeave();
 
                 Thread.sleep(getRandomWaitingTime());
-            } catch (InterruptedException e) {
-                System.out.println(getThreadIdentifier() + " broke");
             }
+        } catch (InterruptedException e) {
+            System.out.println(getThreadIdentifier() + " died");
         }
     }
 
